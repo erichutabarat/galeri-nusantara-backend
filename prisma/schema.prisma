@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin{
+  id  Int @id @default(autoincrement())
+  username String @unique
+  password String
+  email String?
+  role Role @default(ADMIN)
+}
+
+model Contributor{
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  email String?
+  role Role @default(CONTRIBUTOR)
+  posts Budaya[] @relation("ContributorToBudaya")
+}
+
+model Budaya{
+  id Int @id @default(autoincrement())
+  title String @unique
+  images Image[]
+  source String
+  description String
+  category Category[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId Int
+  author Contributor @relation("ContributorToBudaya", fields: [authorId], references: [id], map: "Budaya_author_fkey")
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  budaya Budaya[]
+}
+
+model Image{
+  id Int @id @default(autoincrement())
+  url String
+  description String
+  budayaId Int
+  budaya Budaya? @relation(fields: [budayaId], references: [id])
+}
+
+enum Role{
+  CONTRIBUTOR
+  ADMIN
+}
