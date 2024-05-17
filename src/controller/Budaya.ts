@@ -7,10 +7,10 @@ const BudayaController = {
         const data = BudayaModels.getAll();
         if(!data){
             const response = responseMiddleWare("Failed", "Budaya still empty!", []);
-            res.status(404).json(response);
+            return res.status(404).json(response);
         }
         const response = responseMiddleWare("Success", "Get budaya list success!", data);
-        res.status(200).json(response);
+        return res.status(200).json(response);
     }
 };
 
