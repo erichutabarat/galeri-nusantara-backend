@@ -10,7 +10,7 @@ const AdminController = {
     async adminLogin(req, res) {
         const { username, password } = req.body;
         if (!username || !password) {
-            const response = (0, response_middleware_1.default)("failed", "Please input username and passowrd!");
+            const response = (0, response_middleware_1.default)("Failed", "Please input username and passowrd!");
             return res.status(400).json(response);
         }
         const login = await admin_models_1.default.Login(username, password);
@@ -20,29 +20,29 @@ const AdminController = {
             return res.status(200).json(response);
         }
         else {
-            const response = (0, response_middleware_1.default)("failed", "Incorrect username or password!");
+            const response = (0, response_middleware_1.default)("Failed", "Incorrect username or password!");
             return res.status(404).json(response);
         }
     },
     async adminDetail(req, res) {
         const { token } = req.body;
         if (!token) {
-            const response = (0, response_middleware_1.default)("failed", "Please input token!");
+            const response = (0, response_middleware_1.default)("Failed", "Please input token!");
             return res.status(400).json(response);
         }
         const detail = jwt_auth_1.default.decode(token);
         if (!detail) {
-            const response = (0, response_middleware_1.default)("failed", "Invalid token!");
+            const response = (0, response_middleware_1.default)("Failed", "Invalid token!");
             return res.status(400).json(response);
         }
         const user = JSON.parse(detail).user;
         if (!user) {
-            const response = (0, response_middleware_1.default)("failed", "Invalid token!");
+            const response = (0, response_middleware_1.default)("Failed", "Invalid token!");
             return res.status(404).json(response);
         }
         const data = await admin_models_1.default.getDetailByUser(user);
         if (!data) {
-            const response = (0, response_middleware_1.default)("failed", "User not found!");
+            const response = (0, response_middleware_1.default)("Failed", "User not found!");
             return res.status(404).json(response);
         }
         const response = (0, response_middleware_1.default)("Success", "Success get data", data);

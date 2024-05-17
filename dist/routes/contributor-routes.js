@@ -4,7 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const Test_1 = __importDefault(require("../controller/Test"));
+const Contributor_1 = __importDefault(require("../controller/Contributor"));
 const ContributorRoutes = (0, express_1.Router)();
-ContributorRoutes.get('/', Test_1.default);
+ContributorRoutes.get('/', Contributor_1.default.getAll);
+ContributorRoutes.get('/:id', Contributor_1.default.getById);
 exports.default = ContributorRoutes;
