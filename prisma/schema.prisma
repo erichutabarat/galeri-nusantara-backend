@@ -36,7 +36,7 @@ model Budaya{
   images Image[]
   source String
   description String
-  category Category[]
+  categories Category[] @relation("BudayaToCategory")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   authorId Int
@@ -46,7 +46,8 @@ model Budaya{
 model Category{
   id Int @id @default(autoincrement())
   name String
-  budaya Budaya[]
+  budayaId Int
+  budaya Budaya @relation("BudayaToCategory", fields: [budayaId], references: [id])
 }
 
 model Image{
