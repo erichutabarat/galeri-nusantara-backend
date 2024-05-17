@@ -8,6 +8,7 @@ import ImagesRoutes from '../routes/images-routes';
 const server = express();
 
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
 server.get('/', (req: Request, res: Response) => {
     res.json({
