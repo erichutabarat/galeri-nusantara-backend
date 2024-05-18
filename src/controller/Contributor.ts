@@ -45,6 +45,21 @@ const ContributorController = {
             return res.status(404).json(response);
         }
     },
+    async getRegister(req: Request, res: Response){
+        const { username, password, email} = req.body;
+        if(!username || !password){
+            const response = responseMiddleWare("Failed", "Please input username and password!");
+            return res.status(400).json(response);
+        }
+        const emails = (email) ? email : null;
+        const data = await ContributorModels.Register(username, password, email);
+        if(!data){
+            const response = responseMiddleWare("Failed", "Username or Email already taken!");
+            return res.status(400).json(response);
+        }
+        const response = responseMiddleWare("Success", "Register success!", data);
+        return res.status(200).json(response);
+    },
     async getDetail(req: Request, res: Response){
         const { token } = req.body;
         if(!token){

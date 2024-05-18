@@ -25,7 +25,7 @@ model Contributor{
   id Int @id @default(autoincrement())
   username String @unique
   password String
-  email String?
+  email String? @unique
   role Role @default(CONTRIBUTOR)
   posts Budaya[] @relation("ContributorToBudaya")
 }

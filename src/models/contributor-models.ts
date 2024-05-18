@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../application/database";
 
 const ContributorModels = {
@@ -68,6 +69,27 @@ const ContributorModels = {
             });
             return data;
         } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
+    async Register(username: string, password: string, email?: string){
+        try {
+            const data = await prisma.contributor.create({
+                data: {
+                    username: username,
+                    password: password,
+                    email: email || null
+                }
+            });
+            return data;
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                // Anticipate Unique Error
+                if (error.code === 'P2002') {
+                    return null;
+                }
+            }
             console.error(error);
             throw error;
         }
