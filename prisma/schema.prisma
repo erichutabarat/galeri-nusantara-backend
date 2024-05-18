@@ -38,7 +38,7 @@ model Budaya{
   description String
   categories Category[] @relation("BudayaToCategory")
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
   authorId Int
   author Contributor @relation("ContributorToBudaya", fields: [authorId], references: [id], map: "Budaya_author_fkey")
 }
