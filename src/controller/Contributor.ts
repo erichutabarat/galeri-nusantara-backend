@@ -44,6 +44,30 @@ const ContributorController = {
             const response = responseMiddleWare("Failed", "Incorrect username or password!");
             return res.status(404).json(response);
         }
+    },
+    async getDetail(req: Request, res: Response){
+        const { token } = req.body;
+        if(!token){
+            const response = responseMiddleWare("Failed", "Please input token!");
+            return res.status(400).json(response);
+        }
+        const decode = jwtAuth.decode(token);
+        if(!decode){
+            const response = responseMiddleWare("Failed", "Invalid token!");
+            return res.status(400).json(response);
+        }
+        const user = JSON.parse(decode).user;
+        if(!user){
+            const response = responseMiddleWare("Failed", "Invalid token!");
+            return res.status(400).json(response);
+        }
+        const data = await ContributorModels.getContributorByUser(user);
+        if(!data){
+            const response = responseMiddleWare("Failed", "User not found!");
+            return res.status(404).json(response);
+        }
+        const response = responseMiddleWare("Success", "Success get data", data);
+        return res.status(200).json(response);
     }
 };
 

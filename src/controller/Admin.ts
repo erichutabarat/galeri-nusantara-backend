@@ -27,12 +27,12 @@ const AdminController = {
             const response = responseMiddleWare("Failed", "Please input token!");
             return res.status(400).json(response);
         }
-        const detail = jwtAuth.decode(token);
-        if(!detail){
+        const decode = jwtAuth.decode(token);
+        if(!decode){
             const response = responseMiddleWare("Failed", "Invalid token!");
             return res.status(400).json(response);
         }
-        const user = JSON.parse(detail).user;
+        const user = JSON.parse(decode).user;
         if(!user){
             const response = responseMiddleWare("Failed", "Invalid token!");
             return res.status(404).json(response);

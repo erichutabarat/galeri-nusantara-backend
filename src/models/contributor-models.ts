@@ -34,6 +34,25 @@ const ContributorModels = {
             return null;
         }
     },
+    async getContributorByUser(username: string){
+        try {
+            const data = await prisma.contributor.findUnique({
+                select: {
+                    id: true,
+                    username: true,
+                    email: true,
+                    role: true
+                },
+                where: {
+                    username: username
+                }
+            });
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    },
     async Login(username: string, password: string){
         try {
             const data = await prisma.contributor.findUnique({
