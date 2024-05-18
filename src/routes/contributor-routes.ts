@@ -6,5 +6,7 @@ const ContributorRoutes = Router();
 
 ContributorRoutes.get('/', ContributorController.getAll);
 ContributorRoutes.get('/:id', ContributorController.getById);
+ContributorRoutes.post('/login', ContributorController.getLogin);
+
 
 export default ContributorRoutes;
