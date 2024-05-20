@@ -12,6 +12,7 @@ const images_routes_1 = __importDefault(require("../routes/images-routes"));
 const server = (0, express_1.default)();
 server.use(express_1.default.json());
 server.use(express_1.default.urlencoded({ extended: true }));
+server.use(express_1.default.static('public'));
 server.get('/', (req, res) => {
     res.json({
         message: 'hello world'

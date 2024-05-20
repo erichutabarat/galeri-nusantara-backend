@@ -6,7 +6,6 @@ import imageModels from "./image-models";
 const ContributorModels = {
     async getContributor(){
         try {
-            console.log(await imageModels.getSample());
             const data = await prisma.contributor.findMany({
                 select: {
                     id: true,

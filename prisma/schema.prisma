@@ -53,7 +53,7 @@ model Category{
 model Image{
   id Int @id @default(autoincrement())
   url String
-  description String
+  description String?
   budayaId Int
   budaya Budaya? @relation(fields: [budayaId], references: [id])
 }
