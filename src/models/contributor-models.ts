@@ -1,7 +1,5 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../application/database";
-import Cloudinary from "../utils/cloudinary";
-import imageModels from "./image-models";
 
 const ContributorModels = {
     async getContributor(){

@@ -20,10 +20,18 @@ const jwtAuth = {
         if(!secret){
             return false;
         }
-        const result = jwt.verify(token, secret);
-        return (result) ? true : false;
+        try {
+            const result = jwt.verify(token, secret);
+            return (result) ? true : false;
+        } catch (error) {
+            return false;
+        }
     },
     decode(token: string): string{
+        const checkfirst = this.check(token);
+        if(!checkfirst){
+            return "";
+        }
         const result = jwt.decode(token);
         if(result && typeof result !== "string"){
             return JSON.stringify(result);

@@ -35,7 +35,7 @@ model Budaya{
   title String @unique
   images Image[]
   source String
-  description String
+  description String @db.LongText
   categories Category[] @relation("BudayaToCategory")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt @default(now())
