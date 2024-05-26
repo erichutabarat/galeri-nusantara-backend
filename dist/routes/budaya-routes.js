@@ -7,4 +7,6 @@ const express_1 = require("express");
 const Budaya_1 = __importDefault(require("../controller/Budaya"));
 const BudayaRoutes = (0, express_1.Router)();
 BudayaRoutes.get('/', Budaya_1.default.getAll);
+BudayaRoutes.get('/:id', Budaya_1.default.getById);
+BudayaRoutes.post('/', Budaya_1.default.createBudaya);
 exports.default = BudayaRoutes;

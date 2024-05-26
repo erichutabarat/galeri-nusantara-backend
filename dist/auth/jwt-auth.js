@@ -23,10 +23,19 @@ const jwtAuth = {
         if (!secret) {
             return false;
         }
-        const result = jsonwebtoken_1.default.verify(token, secret);
-        return (result) ? true : false;
+        try {
+            const result = jsonwebtoken_1.default.verify(token, secret);
+            return (result) ? true : false;
+        }
+        catch (error) {
+            return false;
+        }
     },
     decode(token) {
+        const checkfirst = this.check(token);
+        if (!checkfirst) {
+            return "";
+        }
         const result = jsonwebtoken_1.default.decode(token);
         if (result && typeof result !== "string") {
             return JSON.stringify(result);
