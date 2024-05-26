@@ -6,8 +6,12 @@ import CategoryRoutes from '../routes/category-routes';
 import ImagesRoutes from '../routes/images-routes';
 import path
  from 'path';
-const server = express();
+import cors from "cors";
 
+const server = express();
+const corss = cors();
+
+server.use(corss);
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static('public'));
