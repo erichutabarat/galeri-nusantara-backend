@@ -9,9 +9,9 @@ import path
 import cors from "cors";
 
 const server = express();
-const corss = cors();
+const corsMiddleware = cors();
 
-server.use(corss);
+server.use(corsMiddleware);
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static('public'));
