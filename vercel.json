@@ -1,20 +1,38 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "dist/app.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "dist/app.js"
-      }
+        {
+          "src": "package.json",
+          "use": "@vercel/static-build",
+          "config": {
+            "distDir": "dist"
+          }
+        },
+        {
+          "src": "dist/app.js",
+          "use": "@vercel/node"
+        }
+      ],
+      "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "dist/app.js"
+        }
     ],
     "build": {
-        "env": {
-          "DATABASE_URL": "@database_url"
+      "env": {
+        "DATABASE_URL": "@database_url"
+      },
+      "commands": [
+        {
+          "src": "package.json",
+          "use": "@vercel/node",
+          "commands": [
+            "npm install",
+            "npx prisma generate",
+            "npm run build"
+          ]
         }
+      ]
     }
-}
+  }
