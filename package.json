@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dist/app.js",
     "build": "prisma generate && tsc && prisma migrate deploy",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && prisma migrate deploy",
     "dev": "nodemon --exec ts-node src/app.ts",
     "lint": "eslint 'src/**/*.{js,ts}' --fix"
   },
