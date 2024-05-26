@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/app.js",
-    "build": "prisma generate && tsc",
+    "build": "prisma generate && tsc && prisma migrate deploy",
     "postinstall": "prisma generate",
     "dev": "nodemon --exec ts-node src/app.ts",
     "lint": "eslint 'src/**/*.{js,ts}' --fix"
