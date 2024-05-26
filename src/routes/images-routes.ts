@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ImageController from "../controller/Image";
+import ImageController from "../controller/ImageController";
 import UploadMiddleWare from "../middleware/upload-middleware";
 
 const ImagesRoutes = Router();
