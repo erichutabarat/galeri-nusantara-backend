@@ -9,7 +9,10 @@ import path
 import cors from "cors";
 
 const server = express();
-const corsMiddleware = cors();
+const corsOptions: cors.CorsOptions = {
+    origin: '*', // Allow requests from all origins
+};
+const corsMiddleware = cors(corsOptions);
 
 server.use(corsMiddleware);
 server.use(express.json());
