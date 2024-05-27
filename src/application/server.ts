@@ -9,13 +9,12 @@ import path
 import cors from "cors";
 
 const server = express();
-const corsOptions: cors.CorsOptions = {
-    origin: '*', // Allow requests from all origins
-    allowedHeaders: ['Content-Type'] // Allow the Content-Type header
-};
-const corsMiddleware = cors(corsOptions);
 
-server.use(corsMiddleware);
+server.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type']
+}));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static('public'));
