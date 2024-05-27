@@ -11,6 +11,7 @@ import cors from "cors";
 const server = express();
 const corsOptions: cors.CorsOptions = {
     origin: '*', // Allow requests from all origins
+    allowedHeaders: ['Content-Type'] // Allow the Content-Type header
 };
 const corsMiddleware = cors(corsOptions);
 
