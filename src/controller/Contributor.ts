@@ -25,7 +25,7 @@ const ContributorController = {
             const response = responseMiddleWare("Failed", "Contributor not found!");
             return res.status(404).json(response);
         }
-        const response = responseMiddleWare("Success", "Success get contributor detail", data);
+        const response = responseMiddleWare("Success", "Success get contributor detail ssss", data);
         return res.status(200).json(response);
     },
     async getLogin(req: Request, res: Response){
