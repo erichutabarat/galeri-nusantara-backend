@@ -48,7 +48,7 @@ const ContributorModels = {
                     username: true,
                     email: true,
                     role: true,
-                    posts: { // Include the related Budaya posts
+                    posts: {
                         select: {
                             id: true,
                             title: true,
@@ -56,13 +56,13 @@ const ContributorModels = {
                             description: true,
                             createdAt: true,
                             updatedAt: true,
-                            categories: { // Include categories if needed
+                            categories: {
                                 select: {
                                     id: true,
                                     name: true
                                 }
                             },
-                            images: { // Include images if needed
+                            images: {
                                 select: {
                                     id: true,
                                     url: true,
