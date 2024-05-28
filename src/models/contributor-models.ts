@@ -1,5 +1,7 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../application/database";
+import jwtAuth from "../auth/jwt-auth";
+import { json } from "sequelize";
 
 const ContributorModels = {
     async getContributor(){
@@ -92,6 +94,35 @@ const ContributorModels = {
             }
             console.error(error);
             throw error;
+        }
+    },
+    async Budaya(token: string){
+        try {
+            const dataToken = jwtAuth.decode(token);
+            if(!dataToken){
+                return null;
+            }
+            const userData = JSON.parse(dataToken);
+            const userId = await prisma.contributor.findUnique({
+                where: {
+                    username: userData.user
+                },
+                select: {
+                    id: true
+                }
+            });
+            if(!userId){
+                return null;
+            }
+            const data = await prisma.budaya.findMany({
+                where: {
+                    authorId: userId.id
+                }
+            });
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
         }
     }
 };

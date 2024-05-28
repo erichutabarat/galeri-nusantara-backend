@@ -9,5 +9,6 @@ ContributorRoutes.get('/:id', ContributorController.getById);
 ContributorRoutes.post('/login', ContributorController.getLogin);
 ContributorRoutes.post('/register', ContributorController.getRegister);
 ContributorRoutes.post('/detail', ContributorController.getDetail);
+ContributorRoutes.post('/budaya', ContributorController.getBudaya);
 
 export default ContributorRoutes;

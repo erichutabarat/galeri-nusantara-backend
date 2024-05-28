@@ -83,6 +83,25 @@ const ContributorController = {
         }
         const response = responseMiddleWare("Success", "Success get data", data);
         return res.status(200).json(response);
+    },
+    async getBudaya(req: Request, res: Response){
+        const { token } = req.body;
+        if(!token){
+            const response = responseMiddleWare("Failed", "Please input token!");
+            return res.status(400).json(response);
+        }
+        const decode = jwtAuth.decode(token);
+        if(!decode){
+            const response = responseMiddleWare("Failed", "Invalid token!");
+            return res.status(400).json(response);
+        }
+        const data = await ContributorModels.Budaya(token);
+        if(!data){
+            const response = responseMiddleWare("Failed", "Empty data!");
+            return res.status(400).json(response);
+        }
+        const response = responseMiddleWare("Success", "Success get data", data);
+        return res.status(200).json(response);
     }
 };
 
