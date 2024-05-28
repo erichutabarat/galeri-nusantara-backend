@@ -40,14 +40,37 @@ const ContributorModels = {
     async getContributorByUser(username: string){
         try {
             const data = await prisma.contributor.findUnique({
+                where: {
+                    username: username,
+                },
                 select: {
                     id: true,
                     username: true,
                     email: true,
-                    role: true
-                },
-                where: {
-                    username: username
+                    role: true,
+                    posts: { // Include the related Budaya posts
+                        select: {
+                            id: true,
+                            title: true,
+                            source: true,
+                            description: true,
+                            createdAt: true,
+                            updatedAt: true,
+                            categories: { // Include categories if needed
+                                select: {
+                                    id: true,
+                                    name: true
+                                }
+                            },
+                            images: { // Include images if needed
+                                select: {
+                                    id: true,
+                                    url: true,
+                                    description: true
+                                }
+                            }
+                        }
+                    }
                 }
             });
             return data;
