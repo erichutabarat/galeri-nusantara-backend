@@ -55,20 +55,7 @@ const ContributorModels = {
                             source: true,
                             description: true,
                             createdAt: true,
-                            updatedAt: true,
-                            categories: {
-                                select: {
-                                    id: true,
-                                    name: true
-                                }
-                            },
-                            images: {
-                                select: {
-                                    id: true,
-                                    url: true,
-                                    description: true
-                                }
-                            }
+                            updatedAt: true
                         }
                     }
                 }
