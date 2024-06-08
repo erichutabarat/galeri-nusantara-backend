@@ -25,7 +25,8 @@ const ContributorModels = {
                 select: {
                     id: true,
                     username: true,
-                    role: true
+                    role: true,
+                    posts: true
                 },
                 where: {
                     id: id
@@ -47,17 +48,7 @@ const ContributorModels = {
                     id: true,
                     username: true,
                     email: true,
-                    role: true,
-                    posts: {
-                        select: {
-                            id: true,
-                            title: true,
-                            source: true,
-                            description: true,
-                            createdAt: true,
-                            updatedAt: true
-                        }
-                    }
+                    role: true
                 }
             });
             return data;
