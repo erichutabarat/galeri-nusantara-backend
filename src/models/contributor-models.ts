@@ -48,7 +48,8 @@ const ContributorModels = {
                     id: true,
                     username: true,
                     email: true,
-                    role: true
+                    role: true,
+                    posts: true
                 }
             });
             return data;
