@@ -106,27 +106,11 @@ const ContributorModels = {
             throw error;
         }
     },
-    async Budaya(token: string){
+    async Budaya(authorId: number){
         try {
-            const dataToken = jwtAuth.decode(token);
-            if(!dataToken){
-                return null;
-            }
-            const userData = JSON.parse(dataToken);
-            const userId = await prisma.contributor.findUnique({
-                where: {
-                    username: userData.user
-                },
-                select: {
-                    id: true
-                }
-            });
-            if(!userId){
-                return null;
-            }
             const data = await prisma.budaya.findMany({
                 where: {
-                    authorId: userId.id
+                    authorId: authorId
                 }
             });
             return data;

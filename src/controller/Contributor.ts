@@ -85,17 +85,13 @@ const ContributorController = {
         return res.status(200).json(response);
     },
     async getBudaya(req: Request, res: Response){
-        const { token } = req.body;
-        if(!token){
+        const { authorId } = req.params;
+        if(!authorId){
             const response = responseMiddleWare("Failed", "Please input token!");
             return res.status(400).json(response);
         }
-        const decode = jwtAuth.decode(token);
-        if(!decode){
-            const response = responseMiddleWare("Failed", "Invalid token!");
-            return res.status(400).json(response);
-        }
-        const data = await ContributorModels.Budaya(token);
+        const authorid: number = (typeof authorId==="number") ? authorId : parseInt(authorId);
+        const data = await ContributorModels.Budaya(authorid);
         if(!data){
             const response = responseMiddleWare("Failed", "Empty data!");
             return res.status(400).json(response);
