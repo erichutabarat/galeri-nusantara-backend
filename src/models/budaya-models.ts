@@ -29,7 +29,7 @@ const BudayaModels = {
             return data;
         } catch (error) {
             console.error(error);
-            throw error;
+            return null;
         }
     },
     async createBudaya(token: string, title: string, source: string, description: string){
@@ -86,6 +86,41 @@ const BudayaModels = {
             throw error;
         }
 
+    },
+    async deleteBudaya(token: string, id: number){
+        try {
+            const user = jwtAuth.decode(token);
+            if(!user){
+                return null;
+            }
+            const userjson = JSON.parse(user);
+            if(!("user" in userjson)){
+                return null;
+            }
+            const users = userjson.user;
+            const userdata = await prisma.contributor.findUnique({
+                select: {
+                    id: true,
+                    username: true
+                },
+                where: {
+                    username: users
+                }
+            });
+            if(!userdata){
+                return null;
+            }
+            const data = await prisma.budaya.deleteMany({
+                where: {
+                    id: id,
+                    authorId: userdata.id
+                }
+            });
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
     }
 };
 

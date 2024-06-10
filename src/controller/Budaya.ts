@@ -40,6 +40,21 @@ const BudayaController = {
         }
         const response = responseMiddleWare("Success", "Success create new Budaya", data);
         return res.status(200).json(response);
+    },
+    async deleteBudaya(req: Request, res: Response){
+        const { token, id} = req.body;
+        if(!token || !id){
+            const response = responseMiddleWare("Failed", "Please input all requirements!");
+            return res.status(404).json(response);
+        }
+        const ID = (typeof id ==="number") ? id : parseInt(id);
+        const data = await BudayaModels.deleteBudaya(token, ID);
+        if(!data){
+            const response = responseMiddleWare("Failed", "Something error while creating new Budaya!");
+            return res.status(404).json(response);
+        }
+        const response = responseMiddleWare("Success", "Success delete Budaya", data);
+        return res.status(200).json(response);
     }
 };
 
