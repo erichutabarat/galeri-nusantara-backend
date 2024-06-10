@@ -7,9 +7,14 @@ const express_1 = __importDefault(require("express"));
 const admin_routes_1 = __importDefault(require("../routes/admin-routes"));
 const contributor_routes_1 = __importDefault(require("../routes/contributor-routes"));
 const budaya_routes_1 = __importDefault(require("../routes/budaya-routes"));
-const category_routes_1 = __importDefault(require("../routes/category-routes"));
 const images_routes_1 = __importDefault(require("../routes/images-routes"));
+const cors_1 = __importDefault(require("cors"));
 const server = (0, express_1.default)();
+server.use((0, cors_1.default)({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type']
+}));
 server.use(express_1.default.json());
 server.use(express_1.default.urlencoded({ extended: true }));
 server.use(express_1.default.static('public'));
@@ -21,6 +26,5 @@ server.get('/', (req, res) => {
 server.use('/admin', admin_routes_1.default);
 server.use('/contributor', contributor_routes_1.default);
 server.use('/budaya', budaya_routes_1.default);
-server.use('/category', category_routes_1.default);
 server.use('/images', images_routes_1.default);
 exports.default = server;

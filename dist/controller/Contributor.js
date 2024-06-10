@@ -28,7 +28,7 @@ const ContributorController = {
             const response = (0, response_middleware_1.default)("Failed", "Contributor not found!");
             return res.status(404).json(response);
         }
-        const response = (0, response_middleware_1.default)("Success", "Success get contributor detail", data);
+        const response = (0, response_middleware_1.default)("Success", "Success get contributor detail ssss", data);
         return res.status(200).json(response);
     },
     async getLogin(req, res) {
@@ -83,6 +83,21 @@ const ContributorController = {
         if (!data) {
             const response = (0, response_middleware_1.default)("Failed", "User not found!");
             return res.status(404).json(response);
+        }
+        const response = (0, response_middleware_1.default)("Success", "Success get data", data);
+        return res.status(200).json(response);
+    },
+    async getBudaya(req, res) {
+        const { authorId } = req.params;
+        if (!authorId) {
+            const response = (0, response_middleware_1.default)("Failed", "Please input token!");
+            return res.status(400).json(response);
+        }
+        const authorid = (typeof authorId === "number") ? authorId : parseInt(authorId);
+        const data = await contributor_models_1.default.Budaya(authorid);
+        if (!data) {
+            const response = (0, response_middleware_1.default)("Failed", "Empty data!");
+            return res.status(400).json(response);
         }
         const response = (0, response_middleware_1.default)("Success", "Success get data", data);
         return res.status(200).json(response);

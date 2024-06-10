@@ -5,8 +5,8 @@ import BudayaController from "../controller/Budaya";
 const BudayaRoutes = Router();
 
 BudayaRoutes.get('/', BudayaController.getAll);
+BudayaRoutes.delete('/', BudayaController.deleteBudaya);
 BudayaRoutes.get('/:id', BudayaController.getById);
 BudayaRoutes.post('/', BudayaController.createBudaya);
-BudayaRoutes.delete('/delete', BudayaController.deleteBudaya);
 
 export default BudayaRoutes;

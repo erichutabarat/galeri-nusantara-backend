@@ -28,7 +28,8 @@ const ContributorModels = {
                 select: {
                     id: true,
                     username: true,
-                    role: true
+                    role: true,
+                    posts: true
                 },
                 where: {
                     id: id
@@ -44,14 +45,15 @@ const ContributorModels = {
     async getContributorByUser(username) {
         try {
             const data = await database_1.default.contributor.findUnique({
+                where: {
+                    username: username,
+                },
                 select: {
                     id: true,
                     username: true,
                     email: true,
-                    role: true
-                },
-                where: {
-                    username: username
+                    role: true,
+                    posts: true
                 }
             });
             return data;
@@ -101,6 +103,20 @@ const ContributorModels = {
             }
             console.error(error);
             throw error;
+        }
+    },
+    async Budaya(authorId) {
+        try {
+            const data = await database_1.default.budaya.findMany({
+                where: {
+                    authorId: authorId
+                }
+            });
+            return data;
+        }
+        catch (error) {
+            console.error(error);
+            return null;
         }
     }
 };

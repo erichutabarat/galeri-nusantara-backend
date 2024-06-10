@@ -35,7 +35,7 @@ const BudayaModels = {
         }
         catch (error) {
             console.error(error);
-            throw error;
+            return null;
         }
     },
     async createBudaya(token, title, source, description) {
@@ -90,6 +90,42 @@ const BudayaModels = {
             }
             console.error(error);
             throw error;
+        }
+    },
+    async deleteBudaya(token, id) {
+        try {
+            const user = jwt_auth_1.default.decode(token);
+            if (!user) {
+                return null;
+            }
+            const userjson = JSON.parse(user);
+            if (!("user" in userjson)) {
+                return null;
+            }
+            const users = userjson.user;
+            const userdata = await database_1.default.contributor.findUnique({
+                select: {
+                    id: true,
+                    username: true
+                },
+                where: {
+                    username: users
+                }
+            });
+            if (!userdata) {
+                return null;
+            }
+            const data = await database_1.default.budaya.deleteMany({
+                where: {
+                    id: id,
+                    authorId: userdata.id
+                }
+            });
+            return data;
+        }
+        catch (error) {
+            console.error(error);
+            return null;
         }
     }
 };
