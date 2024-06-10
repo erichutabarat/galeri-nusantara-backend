@@ -42,7 +42,7 @@ const BudayaController = {
         return res.status(200).json(response);
     },
     async deleteBudaya(req: Request, res: Response){
-        const { token, id} = req.body;
+        const { token, id } = req.body;
         if(!token || !id){
             const response = responseMiddleWare("Failed", "Please input all requirementss!");
             return res.status(404).json(response);
