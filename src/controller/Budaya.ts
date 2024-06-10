@@ -44,7 +44,7 @@ const BudayaController = {
     async deleteBudaya(req: Request, res: Response){
         const { token, id} = req.body;
         if(!token || !id){
-            const response = responseMiddleWare("Failed", "Please input all requirements!");
+            const response = responseMiddleWare("Failed", "Please input all requirementss!");
             return res.status(404).json(response);
         }
         const ID = (typeof id ==="number") ? id : parseInt(id);
