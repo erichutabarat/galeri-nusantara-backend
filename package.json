@@ -7,7 +7,7 @@
     "build": "prisma generate && tsc",
     "postinstall": "prisma generate && prisma db push --accept-data-loss",
     "dev": "nodemon --exec ts-node src/app.ts",
-    "lint": "eslint 'src/**/*.{js,ts}' --fix"
+    "lint": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +30,9 @@
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
     "@types/cors": "^2.8.17",
+    "@types/eslint__js": "^8.42.3",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/multer": "^1.4.11",
@@ -45,6 +47,6 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.10.0"
+    "typescript-eslint": "^7.12.0"
   }
 }

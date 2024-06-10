@@ -3,8 +3,6 @@ import AdminRoutes from '../routes/admin-routes';
 import ContributorRoutes from '../routes/contributor-routes';
 import BudayaRoutes from '../routes/budaya-routes';
 import ImagesRoutes from '../routes/images-routes';
-import path
- from 'path';
 import cors from "cors";
 
 const server = express();

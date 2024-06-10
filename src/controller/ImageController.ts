@@ -15,7 +15,7 @@ const ImageController = {
         if(!id){
             const response = responseMiddleWare("Failed", "Please input id image!");
             return res.status(400).json(response);
-        };
+        }
         const newId = (typeof id !=="number") ? parseInt(id) : parseInt(id);
         const data = await imageModels.getImageById(newId);
         const response = responseMiddleWare("Success", "Success get data!", data);
@@ -26,7 +26,7 @@ const ImageController = {
         if(!id){
             const response = responseMiddleWare("Failed", "Please input id budaya!");
             return res.status(400).json(response);
-        };
+        }
         const newId = (typeof id !=="number") ? parseInt(id) : parseInt(id);
         const data = await imageModels.getImageByBudayaId(newId);
         const response = responseMiddleWare("Success", "Success get data!", data);
