@@ -19,7 +19,6 @@ const ImageController = {
             const response = (0, response_middleware_1.default)("Failed", "Please input id image!");
             return res.status(400).json(response);
         }
-        ;
         const newId = (typeof id !== "number") ? parseInt(id) : parseInt(id);
         const data = await image_models_1.default.getImageById(newId);
         const response = (0, response_middleware_1.default)("Success", "Success get data!", data);
@@ -31,7 +30,6 @@ const ImageController = {
             const response = (0, response_middleware_1.default)("Failed", "Please input id budaya!");
             return res.status(400).json(response);
         }
-        ;
         const newId = (typeof id !== "number") ? parseInt(id) : parseInt(id);
         const data = await image_models_1.default.getImageByBudayaId(newId);
         const response = (0, response_middleware_1.default)("Success", "Success get data!", data);
