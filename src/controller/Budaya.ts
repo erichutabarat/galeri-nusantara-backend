@@ -42,7 +42,8 @@ const BudayaController = {
         return res.status(200).json(response);
     },
     async updateBudaya(req: Request, res: Response) {
-        const { token, id, title, source, description } = req.body;
+        const { id } = req.params;
+        const { token, title, source, description } = req.body;
         if (!token || !id || !title || !source || !description) {
             const response = responseMiddleWare("Failed", "Please input all requirements!");
             return res.status(400).json(response);
