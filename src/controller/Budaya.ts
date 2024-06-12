@@ -41,6 +41,35 @@ const BudayaController = {
         const response = responseMiddleWare("Success", "Success create new Budaya", data);
         return res.status(200).json(response);
     },
+    async updateBudaya(req: Request, res: Response) {
+        const { id } = req.params;
+        const { token, title, source, description } = req.body;
+        if (!token || !id || !title || !source || !description) {
+            const response = responseMiddleWare("Failed", "Please input all requirements!");
+            return res.status(400).json(response);
+        }
+    
+        const ID = (typeof id === "number") ? id : parseInt(id);
+        if (isNaN(ID)) {
+            const response = responseMiddleWare("Failed", "Invalid ID format!");
+            return res.status(400).json(response);
+        }
+    
+        try {
+            const data = await BudayaModels.updateBudaya(token, ID, title, source, description);
+            if (!data) {
+                const response = responseMiddleWare("Failed", "Something went wrong while updating Budaya!");
+                return res.status(404).json(response);
+            }
+    
+            const response = responseMiddleWare("Success", "Successfully updated Budaya", data);
+            return res.status(200).json(response);
+    
+        } catch (error) {
+            const response = responseMiddleWare("Error", "Internal Server Error", error.message);
+            return res.status(500).json(response);
+        }
+    },    
     async deleteBudaya(req: Request, res: Response){
         const { token, id } = req.body;
         if(!token || !id){
