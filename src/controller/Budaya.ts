@@ -28,17 +28,30 @@ const BudayaController = {
         return res.status(200).json(response);
     },
     async createBudaya(req: Request, res: Response){
-        const { token, title, source, description } =  req.body;
+        const { token, id, title, source, description } =  req.body;
         if(!token  || !title || !source || !description){
             const response = responseMiddleWare("Failed", "Please input all requirements!");
             return res.status(404).json(response);
         }
-        const data = await BudayaModels.createBudaya(token, title, source, description);
+        let data;
+        const ID = (typeof id==="number" ? id : parseInt(id));
+        if(id){
+            data = await BudayaModels.updateBudaya(token, ID, title, source, description);
+        }
+        else{
+            data = await BudayaModels.createBudaya(token, title, source, description);
+        }
         if(!data){
             const response = responseMiddleWare("Failed", "Something error while creating new Budaya!");
             return res.status(404).json(response);
         }
-        const response = responseMiddleWare("Success", "Success create new Budaya", data);
+        let response;
+        if(id){
+            response = responseMiddleWare("Success", "Success update Budaya", data);
+        }
+        else{
+            response = responseMiddleWare("Success", "Success create new Budaya", data);
+        }
         return res.status(200).json(response);
     },
     async updateBudaya(req: Request, res: Response) {
