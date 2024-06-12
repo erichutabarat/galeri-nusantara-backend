@@ -4,7 +4,7 @@ import ContributorRoutes from '../routes/contributor-routes';
 import BudayaRoutes from '../routes/budaya-routes';
 import ImagesRoutes from '../routes/images-routes';
 import cors from "cors";
-
+import bodyParser from "body-parser";
 const server = express();
 
 server.use(cors({
@@ -12,6 +12,7 @@ server.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type']
 }));
+server.use(bodyParser.json());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static('public'));
