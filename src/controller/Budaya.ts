@@ -42,7 +42,8 @@ const BudayaController = {
             data = await BudayaModels.createBudaya(token, title, source, description);
         }
         if(!data){
-            const response = responseMiddleWare("Failed", "Something error while creating new Budaya!");
+            console.log(data);
+            const response = responseMiddleWare("Failed", "Something error while creating new Budayas!");
             return res.status(404).json(response);
         }
         let response;
