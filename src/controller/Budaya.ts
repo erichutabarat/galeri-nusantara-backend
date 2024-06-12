@@ -34,8 +34,8 @@ const BudayaController = {
             return res.status(404).json(response);
         }
         let data;
-        const ID = (typeof id==="number" ? id : parseInt(id));
         if(id){
+            const ID = (typeof id==="number" ? id : parseInt(id));
             data = await BudayaModels.updateBudaya(token, ID, title, source, description);
         }
         else{
