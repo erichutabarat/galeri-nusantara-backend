@@ -5,6 +5,7 @@ import BudayaRoutes from '../routes/budaya-routes';
 import ImagesRoutes from '../routes/images-routes';
 import cors from "cors";
 import bodyParser from "body-parser";
+import BudayaTwoRoutes from '../routes/budaya2-routes';
 const server = express();
 
 server.use(cors({
@@ -26,6 +27,7 @@ server.get('/', (req: Request, res: Response) => {
 server.use('/admin', AdminRoutes);
 server.use('/contributor', ContributorRoutes);
 server.use('/budaya', BudayaRoutes);
+server.use('/budayatwo', BudayaTwoRoutes);
 server.use('/images', ImagesRoutes);
 
 export default server;
