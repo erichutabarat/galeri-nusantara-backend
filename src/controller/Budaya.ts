@@ -56,6 +56,7 @@ const BudayaController = {
         return res.status(200).json(response);
     },
     async updateBudaya(req: Request, res: Response) {
+        console.log("TEST");
         const { id } = req.params;
         const { token, title, source, description } = req.body;
         if (!token || !id || !title || !source || !description) {
