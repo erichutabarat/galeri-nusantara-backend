@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
       cb(null, path.join(__dirname, '../public/uploads/images/'));
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+      cb(null, path.extname(file.originalname));
     }
   });
 const UploadMiddleWare = multer({ storage: storage });
