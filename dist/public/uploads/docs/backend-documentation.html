@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Nusantara Backend Documentation</title>
+    <link rel="stylesheet" href="doc-style.css"/>
+</head>
+<body>
+    <header>
+        <h1>Galeri Nusantara Backend</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tech Stack</a></li>
+                <li><a href="#">API Documentation</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="introduction">
+            <div>
+                <h1>Galeri Nusantara Backend</h1>
+                <p>
+                    Backend for Galeri Nusantara Project's
+                </p>
+            </div>
+            <div>
+                <h2>Tech Stack</h2>
+                <div>
+                    <button>ExpressJS</button>
+                    <button>TypeScript</button>
+                    <button>Prisma ORM</button>
+                    <button>MySQL</button>
+                    <button>Cloudinary CDN</button>
+                </div>
+            </div>
+        </div>
+        <div id="api-documentation">
+            <h2>API Documentation</h2>
+            <div class="api-endpoint">
+                <h3>Admin Endpoint</h3>
+                <div class="api-detail">
+                    <h4>Admin Login</h4>
+                    <span class="api-url">URL: http://127.0.0.1/admin/login</span>
+                    <span class="api-method">POST</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { username: "username", password: "password" }</p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                        {
+                            "status": "Status Here",
+                            "message": "Message Here",
+                            "data": {
+                                "token": "Token for login here"
+                            }
+                        }
+                        </pre> 
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Admin Detail</h4>
+                    <span class="api-url">URL: http://127.0.0.1/admin/detail</span>
+                    <span class="api-method">POST</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { token: "token" }</p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                        {
+                            "status": "Status Here",
+                            "message": "Message Here",
+                            "data": {
+                                "id": admin id here,
+                                "username": "admin username here",
+                                "email": "admin email here",
+                                "role": "admin role here"
+                            }
+                        }
+                        </pre>
+                    </p>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <h3>Contributor Endpoint</h3>
+                <div class="api-detail">
+                    <h4>Contributor Login</h4>
+                    <span class="api-url">URL: http://127.0.0.1/contributor/login</span>
+                    <span class="api-method">POST</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { username: "username", password: "password" }</p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                        {
+                            "status": "Status Here",
+                            "message": "Message Here",
+                            "data": {
+                                "token": "Token for login here"
+                            }
+                        }
+                        </pre> 
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Contributor Register</h4>
+                    <span class="api-url">URL: http://127.0.0.1/contributor/register</span>
+                    <span class="api-method">POST</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { username: "username", password: "password", email: "email" }</p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                        {
+                            "status": "status here",
+                            "message": "message here",
+                            "data": {
+                                "id": id,
+                                "username": "username here",
+                                "password": "password here",
+                                "email": "email here",
+                                "role": "role here"
+                            }
+                        }
+                        </pre>
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Contributor Detail</h4>
+                    <span class="api-url">URL: http://127.0.0.1/contributor/detail</span>
+                    <span class="api-method">POST</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { token: "token" }</p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                        {
+                            "status": "Status Here",
+                            "message": "Message Here",
+                            "data": {
+                                "id": contributor id here,
+                                "username": "contributor username here",
+                                "email": "contributor email here",
+                                "role": "contributor role here"
+                            }
+                        }
+                        </pre>
+                    </p>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <h3>Budaya Endpoint</h3>
+                <div class="api-detail">
+                    <h4>Show All Budaya</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/budaya</span>
+                    <span class="api-method">GET</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Get budaya list success!",
+                                "data": [
+                                    {
+                                        "id": 1,
+                                        "title": "bunga",
+                                        "source": "taman",
+                                        "description": "bunga di taman",
+                                        "createdAt": "2024-05-18T12:10:54.000Z",
+                                        "updatedAt": "2024-05-18T12:11:01.396Z",
+                                        "authorId": 1,
+                                        "images": [
+                                            {
+                                                "id": 1,
+                                                "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                                "description": "bunga di taman",
+                                                "budayaId": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "Tari Jaipong",
+                                        "source": "Sunda",
+                                        "description": "Jaipongan adalah sebuah jenis tari pergaulan tradisional masyarakat Sunda yang berasal dari wilayah Karawang dan sangat populer di Indonesia.",
+                                        "createdAt": "2024-05-23T04:18:11.355Z",
+                                        "updatedAt": "2024-05-23T04:18:11.355Z",
+                                        "authorId": 2,
+                                        "images": [
+                                            {
+                                                "id": 4,
+                                                "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                                "description": "Sample",
+                                                "budayaId": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": 5,
+                                        "title": "Tari Kecak",
+                                        "source": "Bali",
+                                        "description": "Tari kecak adalah seni tari yang berasal dari Bali. Seni tari kecak ini dipertunjukkan oleh puluhan penari laki-laki yang duduk berbaris dengan pola melingkar dan dengan irama tertentu menyerukan \"cak, cak, cak\" serta mengangkat kedua lengan.",
+                                        "createdAt": "2024-05-23T04:34:09.042Z",
+                                        "updatedAt": "2024-05-23T04:34:09.042Z",
+                                        "authorId": 2,
+                                        "images": [
+                                            {
+                                                "id": 5,
+                                                "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                                "description": "Sample",
+                                                "budayaId": 5
+                                            },
+                                            {
+                                                "id": 9,
+                                                "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1716440565/images-1716440563937.jpg",
+                                                "description": "null",
+                                                "budayaId": 5
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        </pre> 
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Budaya Detail</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/budaya/2</span>
+                    <span class="api-method">GET</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Success get budaya detail",
+                                "data": {
+                                    "id": 2,
+                                    "title": "Tari Jaipong",
+                                    "source": "Sunda",
+                                    "description": "Jaipongan adalah sebuah jenis tari pergaulan tradisional masyarakat Sunda yang berasal dari wilayah Karawang dan sangat populer di Indonesia.",
+                                    "createdAt": "2024-05-23T04:18:11.355Z",
+                                    "updatedAt": "2024-05-23T04:18:11.355Z",
+                                    "authorId": 2,
+                                    "images": [
+                                        {
+                                            "id": 4,
+                                            "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                            "description": "Sample",
+                                            "budayaId": 2
+                                        }
+                                    ]
+                                }
+                            }
+                        </pre>
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Create New Budaya</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/budaya</span>
+                    <span class="api-method">POST</span>
+                    <p>
+                        NOTE: THIS WILL AUTO CREATE SAMPLE IMAGES FOR BUDAYA.
+                    </p>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                        { token: "token", title: "title", source: "source", description: "description" }
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Success create new Budaya",
+                                "data": {
+                                    "id": 6,
+                                    "title": "Tari Kecak 2",
+                                    "source": "Bali",
+                                    "description": "Tari kecak adalah seni tari yang berasal dari Bali. Seni tari kecak ini dipertunjukkan oleh puluhan penari laki-laki yang duduk berbaris dengan pola melingkar dan dengan irama tertentu menyerukan \"cak, cak, cak\" serta mengangkat kedua lengan.",
+                                    "createdAt": "2024-05-26T05:07:21.508Z",
+                                    "updatedAt": "2024-05-26T05:07:21.508Z",
+                                    "authorId": 1
+                                }
+                            }
+                        </pre> 
+                    </p>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <h3>Image Endpoint</h3>
+                <div class="api-detail">
+                    <h4>Contributor Login</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/images</span>
+                    <span class="api-method">GET</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Success get data!",
+                                "data": [
+                                    {
+                                        "id": 1,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                        "description": "bunga di taman",
+                                        "budayaId": 1
+                                    },
+                                    {
+                                        "id": 4,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                        "description": "Sample",
+                                        "budayaId": 2
+                                    },
+                                    {
+                                        "id": 5,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                        "description": "Sample",
+                                        "budayaId": 5
+                                    },
+                                    {
+                                        "id": 9,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1716440565/images-1716440563937.jpg",
+                                        "description": "null",
+                                        "budayaId": 5
+                                    },
+                                    {
+                                        "id": 10,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                        "description": "Sample",
+                                        "budayaId": 6
+                                    }
+                                ]
+                            }
+                        </pre> 
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Image Detail</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/images/4</span>
+                    <span class="api-method">GET</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Success get data!",
+                                "data": {
+                                    "id": 4,
+                                    "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                    "description": "Sample",
+                                    "budayaId": 2
+                                }
+                            }
+                        </pre>
+                    </p>
+                </div>
+                <div class="api-detail">
+                    <h4>Images By Budaya Id</h4>
+                    <span class="api-url">URL: http://127.0.0.1:8080/images/budaya/1</span>
+                    <span class="api-method">GET</span>
+                    <p class="api-body">
+                        Body / Data: <br/>
+                    </p>
+                    <p class="api-response">
+                        Response: <br/>
+                        <pre class="api-response-json">
+                            {
+                                "status": "Success",
+                                "message": "Success get data!",
+                                "data": [
+                                    {
+                                        "id": 1,
+                                        "url": "http://res.cloudinary.com/djwftgm6b/image/upload/v1715915182/sample.jpg",
+                                        "description": "bunga di taman",
+                                        "budayaId": 1
+                                    }
+                                ]
+                            }
+                        </pre>
+                    </p>
+                </div>
+            </div>
+            <div class="api-endpoint">
+                <h3>Category Endpoint Still Ongoing</h3>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>
+            Copyright 2024 @ Galeri Nusantara - Eric
+        </p>
+    </footer>
+</body>
+</html>

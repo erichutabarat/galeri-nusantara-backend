@@ -31,23 +31,64 @@ const BudayaController = {
         return res.status(200).json(response);
     },
     async createBudaya(req, res) {
-        const { token, title, source, description } = req.body;
+        const { token, id, title, source, description } = req.body;
         if (!token || !title || !source || !description) {
             const response = (0, response_middleware_1.default)("Failed", "Please input all requirements!");
             return res.status(404).json(response);
         }
-        const data = await budaya_models_1.default.createBudaya(token, title, source, description);
+        let data;
+        if (id) {
+            const ID = (typeof id === "number" ? id : parseInt(id));
+            data = await budaya_models_1.default.updateBudaya(token, ID, title, source, description);
+        }
+        else {
+            data = await budaya_models_1.default.createBudaya(token, title, source, description);
+        }
         if (!data) {
-            const response = (0, response_middleware_1.default)("Failed", "Something error while creating new Budaya!");
+            console.log(data);
+            const response = (0, response_middleware_1.default)("Failed", "Something error while creating new Budayas!");
             return res.status(404).json(response);
         }
-        const response = (0, response_middleware_1.default)("Success", "Success create new Budaya", data);
+        let response;
+        if (id) {
+            response = (0, response_middleware_1.default)("Success", "Success update Budaya", data);
+        }
+        else {
+            response = (0, response_middleware_1.default)("Success", "Success create new Budaya", data);
+        }
         return res.status(200).json(response);
+    },
+    async updateBudaya(req, res) {
+        console.log("TEST");
+        const { id } = req.params;
+        const { token, title, source, description } = req.body;
+        if (!token || !id || !title || !source || !description) {
+            const response = (0, response_middleware_1.default)("Failed", "Please input all requirements!");
+            return res.status(400).json(response);
+        }
+        const ID = (typeof id === "number") ? id : parseInt(id);
+        if (isNaN(ID)) {
+            const response = (0, response_middleware_1.default)("Failed", "Invalid ID format!");
+            return res.status(400).json(response);
+        }
+        try {
+            const data = await budaya_models_1.default.updateBudaya(token, ID, title, source, description);
+            if (!data) {
+                const response = (0, response_middleware_1.default)("Failed", "Something went wrong while updating Budaya!");
+                return res.status(404).json(response);
+            }
+            const response = (0, response_middleware_1.default)("Success", "Successfully updated Budaya", data);
+            return res.status(200).json(response);
+        }
+        catch (error) {
+            const response = (0, response_middleware_1.default)("Error", "Internal Server Error", error.message);
+            return res.status(500).json(response);
+        }
     },
     async deleteBudaya(req, res) {
         const { token, id } = req.body;
         if (!token || !id) {
-            const response = (0, response_middleware_1.default)("Failed", "Please input all requirements!");
+            const response = (0, response_middleware_1.default)("Failed", "Please input all requirementss!");
             return res.status(404).json(response);
         }
         const ID = (typeof id === "number") ? id : parseInt(id);

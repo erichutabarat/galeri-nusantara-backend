@@ -92,6 +92,59 @@ const BudayaModels = {
             throw error;
         }
     },
+    async updateBudaya(token, id, title, source, description) {
+        try {
+            const user = jwt_auth_1.default.decode(token);
+            if (!user) {
+                return null;
+            }
+            const userjson = JSON.parse(user);
+            if (!("user" in userjson)) {
+                return null;
+            }
+            const users = userjson.user;
+            const userdata = await database_1.default.contributor.findUnique({
+                select: {
+                    id: true,
+                    username: true
+                },
+                where: {
+                    username: users
+                }
+            });
+            if (!userdata) {
+                return null;
+            }
+            const existingBudaya = await database_1.default.budaya.findUnique({
+                where: {
+                    id: id
+                }
+            });
+            if (!existingBudaya) {
+                return null;
+            }
+            const updatedData = await database_1.default.budaya.update({
+                where: {
+                    id: id
+                },
+                data: {
+                    title: title,
+                    source: source,
+                    description: description,
+                }
+            });
+            return updatedData;
+        }
+        catch (error) {
+            if (error instanceof client_1.Prisma.PrismaClientKnownRequestError) {
+                if (error.code === 'P2002') {
+                    return null;
+                }
+            }
+            console.error(error);
+            throw error;
+        }
+    },
     async deleteBudaya(token, id) {
         try {
             const user = jwt_auth_1.default.decode(token);

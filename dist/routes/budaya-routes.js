@@ -9,5 +9,6 @@ const BudayaRoutes = (0, express_1.Router)();
 BudayaRoutes.get('/', Budaya_1.default.getAll);
 BudayaRoutes.delete('/', Budaya_1.default.deleteBudaya);
 BudayaRoutes.get('/:id', Budaya_1.default.getById);
+BudayaRoutes.put('/:id', Budaya_1.default.updateBudaya);
 BudayaRoutes.post('/', Budaya_1.default.createBudaya);
 exports.default = BudayaRoutes;

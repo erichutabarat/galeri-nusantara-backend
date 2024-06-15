@@ -36,37 +36,54 @@ const ImageController = {
         return res.status(200).json(response);
     },
     async uploadImage(req, res) {
-        if (req.file) {
-            const { budayaid } = req.body;
-            if (!budayaid) {
-                return res.json({
-                    message: 'Please input budaya id!'
-                });
-            }
-            const budayaId = parseInt(budayaid);
-            const paths = req.file.path;
-            const uploading = await (0, uploader_1.default)(paths);
-            const creating = await image_models_1.default.createImage(uploading, budayaId);
-            fs_1.default.unlink(paths, (error) => {
-                if (error) {
-                    console.error(error);
+        try {
+            if (req.file) {
+                console.log(req.file);
+                const { budayaid } = req.body;
+                if (!budayaid) {
+                    return res.status(400).json({
+                        message: 'Please input budaya id!'
+                    });
                 }
-            });
-            if (creating) {
-                return res.json({
-                    message: 'upload success',
-                    location: uploading
+                const budayaId = parseInt(budayaid);
+                const paths = req.file.path;
+                if (!paths) {
+                    return res.status(400).json({
+                        message: 'ERRORS unknown paths'
+                    });
+                }
+                // Upload to Cloudinary
+                const uploading = await (0, uploader_1.default)(paths);
+                // Create image record in the database
+                const creating = await image_models_1.default.createImage(uploading, budayaId);
+                // Remove the file from local storage
+                fs_1.default.unlink(paths, (error) => {
+                    if (error) {
+                        console.error('Error deleting file:', error);
+                    }
                 });
+                if (creating) {
+                    return res.status(201).json({
+                        message: 'Upload success',
+                        location: uploading
+                    });
+                }
+                else {
+                    return res.status(500).json({
+                        message: 'Upload failed'
+                    });
+                }
             }
             else {
-                return res.json({
-                    message: 'upload failed'
+                return res.status(400).json({
+                    message: 'No file uploaded'
                 });
             }
         }
-        else {
-            return res.json({
-                message: 'upload failed'
+        catch (error) {
+            console.error('Error during upload:', error);
+            return res.status(500).json({
+                message: 'Internal server error'
             });
         }
     }
