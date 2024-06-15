@@ -33,45 +33,60 @@ const ImageController = {
         return res.status(200).json(response);
     },
     async uploadImage(req: Request, res: Response) {
-        if(req.file){
+        try {
+          if (req.file) {
             const { budayaid } = req.body;
-            if(!budayaid){
-                return res.json({
-                    message: 'Please input budaya id!'
-                });
+      
+            if (!budayaid) {
+              return res.status(400).json({
+                message: 'Please input budaya id!'
+              });
             }
+      
             const budayaId = parseInt(budayaid);
             const paths = req.file.path;
-            if(!paths){
-                return res.json({
-                    message: 'ERRORS unknown paths'
-                });
+      
+            if (!paths) {
+              return res.status(400).json({
+                message: 'ERRORS unknown paths'
+              });
             }
+      
+            // Upload to Cloudinary
             const uploading = await Uploader(paths);
+      
+            // Create image record in the database
             const creating = await imageModels.createImage(uploading, budayaId);
+      
+            // Remove the file from local storage
             fs.unlink(paths, (error) => {
-                if(error){
-                    console.error(error);
-                }
+              if (error) {
+                console.error('Error deleting file:', error);
+              }
             });
-            if(creating){
-                return res.json({
-                    message: 'upload success',
-                    location: uploading
-                });
+      
+            if (creating) {
+              return res.status(201).json({
+                message: 'Upload success',
+                location: uploading
+              });
+            } else {
+              return res.status(500).json({
+                message: 'Upload failed'
+              });
             }
-            else{
-                return res.json({
-                    message: 'upload failed'
-                });
-            }
-        }
-        else{
-            return res.json({
-                message: 'upload failed'
+          } else {
+            return res.status(400).json({
+              message: 'No file uploaded'
             });
+          }
+        } catch (error) {
+          console.error('Error during upload:', error);
+          return res.status(500).json({
+            message: 'Internal server error'
+          });
         }
-    }
+      }
 };
 
 export default ImageController;
