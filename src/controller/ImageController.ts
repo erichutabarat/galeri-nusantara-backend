@@ -35,6 +35,7 @@ const ImageController = {
     async uploadImage(req: Request, res: Response) {
         try {
           if (req.file) {
+            console.log(req.file);
             const { budayaid } = req.body;
       
             if (!budayaid) {
@@ -86,7 +87,7 @@ const ImageController = {
             message: 'Internal server error'
           });
         }
-      }
+    }
 };
 
 export default ImageController;

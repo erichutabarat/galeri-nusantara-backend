@@ -17,7 +17,7 @@ server.use(cors({
 server.use(bodyParser.json());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(express.static(path.join(__dirname, '../../public')));
+server.use(express.static(path.join(__dirname, '../public')));
 
 server.get('/', (req: Request, res: Response) => {
     res.json({
