@@ -6,6 +6,7 @@ import ImagesRoutes from '../routes/images-routes';
 import cors from "cors";
 import bodyParser from "body-parser";
 import BudayaTwoRoutes from '../routes/budaya2-routes';
+import path from 'path';
 const server = express();
 
 server.use(cors({
@@ -16,7 +17,7 @@ server.use(cors({
 server.use(bodyParser.json());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(express.static('public'));
+server.use(express.static(path.join(__dirname, '../../public')));
 
 server.get('/', (req: Request, res: Response) => {
     res.json({
