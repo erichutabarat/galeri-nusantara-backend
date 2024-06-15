@@ -42,6 +42,11 @@ const ImageController = {
             }
             const budayaId = parseInt(budayaid);
             const paths = req.file.path;
+            if(!paths){
+                return res.json({
+                    message: 'ERRORS unknown paths'
+                });
+            }
             const uploading = await Uploader(paths);
             const creating = await imageModels.createImage(uploading, budayaId);
             fs.unlink(paths, (error) => {
