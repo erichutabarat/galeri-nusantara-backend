@@ -44,6 +44,14 @@ const imageModels = {
     },
     async createImage(url: string, budayaId: number, description?:string,){
         try {
+            const deleteCurrent = await prisma.image.deleteMany({
+                where: {
+                    budayaId: budayaId
+                }
+            });
+            if(!deleteCurrent){
+                return null;
+            }
             const data = await prisma.image.create({
                 data: {
                     url: url,
