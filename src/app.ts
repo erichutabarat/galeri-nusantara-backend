@@ -7,10 +7,10 @@ const port = process.env.PORT || 443;
 
 // Paths to the SSL certificate and key files
 const sslOptions = {
-    key: fs.readFileSync('../ssl/selfsigned.key'),
-    cert: fs.readFileSync('../ssl/selfsigned.crt')
+    key: fs.readFileSync('/home/ec2-user/galeri-nusantara-backend/ssl/selfsigned.key'),
+    cert: fs.readFileSync('/home/ec2-user/galeri-nusantara-backend/ssl/selfsigned.crt')
 };
 
 https.createServer(sslOptions, Apps).listen(port, () => {
-    console.log(`Server running on https://127.0.0.1:${port}`);
+    console.log(`Server running on https://0.0.0.0:${port}`);
 });
